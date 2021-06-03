@@ -1,0 +1,50 @@
+snippet appshiny
+library(shiny)
+
+ui <- fluidPage(
+    ${0}
+)
+
+server <- function(input, output, session) {
+    
+}
+
+shinyApp(ui, server)
+
+#snippet shinymod
+#	${1:name}_UI <- function(id) {
+#	  ns <- NS(id)
+#	  tagList(
+#		${0}
+#	  )
+#	}
+
+#	${1:name} <- function(input, output, session) {
+
+#	}
+
+snippet modulo
+${1:name}UI <- function(id) {
+    ns <- NS(id)
+    tagList(
+        ${0}
+    )
+}
+
+${1:name}Server <- function(id) {
+    moduleServer(id, function(input, output, session) {
+        
+    })
+}
+
+${1:name}App <- function(){
+    ui <- fluidPage(
+        ${1:name}UI("myTestId")
+    )
+    server <- function(input, output, session) {
+        ${1:name}Server("myTestId")
+    }
+    shinyApp(ui, server)
+}
+
+${1:name}App()
